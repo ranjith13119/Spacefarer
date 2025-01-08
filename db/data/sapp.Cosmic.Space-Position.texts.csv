@@ -1,0 +1,11 @@
+ID;locale;name;description
+1c21e3b8-7590-40b0-b450-991d3b3c348f;de;Pilot;Verantwortlich für das Navigieren des Raumschiffs
+9a8b6de9-e54b-478b-b5b4-f9e77e9d7ad0;de;Wissenschaftler;Führt Forschung und Experimente durch
+d8f41bc2-52c4-493b-bcb5-d0b694b4306c;de;Ingenieur;Wartet und repariert das Raumschiff
+68fa3767-0563-4237-90a3-7732155756e5;de;Mediziner;Leistet medizinische Versorgung für die Crew
+72dfe735-6f69-4f39-a35d-bb62fc70521f;de;Kommandant;Leitet die Crew und trifft Entscheidungen
+1c21e3b8-7590-40b0-b450-991d3b3c348f;fr;Pilote;Responsable de la navigation du vaisseau spatial
+9a8b6de9-e54b-478b-b5b4-f9e77e9d7ad0;fr;Scientifique;Effectue des recherches et des expériences
+d8f41bc2-52c4-493b-bcb5-d0b694b4306c;fr;Ingénieur;Maintient et répare le vaisseau spatial
+68fa3767-0563-4237-90a3-7732155756e5;fr;Médecin;Fournit des soins médicaux à l'équipage
+72dfe735-6f69-4f39-a35d-bb62fc70521f;fr;Commandant;Dirige l'équipage et prend des décisions

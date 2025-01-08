@@ -1,0 +1,106 @@
+{
+  "name": "SAPCosmicPath",
+  "version": "1.0.0",
+  "description": "Full Stack Galactic Spacefarer Adventure Project",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.14.0",
+    "@cap-js/audit-logging": ">=0",
+    "@cap-js/hana": "^1",
+    "@grpc/grpc-js": "^1.12.5",
+    "@opentelemetry/exporter-metrics-otlp-grpc": "^0.57.0",
+    "@opentelemetry/exporter-trace-otlp-grpc": "^0.57.0",
+    "@sap-cloud-sdk/mail-client": "^3.24.0",
+    "@sap/cds": "^8",
+    "@sap/xssec": "^4.2.7",
+    "cds-swagger-ui-express": "^0.10.0",
+    "express": "^4",
+    "helmet": "^8.0.0"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.7.0",
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^8",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.29"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "undeploy": "cf undeploy SAPCosmicPath --delete-services --delete-service-keys --delete-service-brokers",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "watch-spacefare": "cds watch --open spacefare/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "auth": {
+        "[producton]": {
+          "strategy": "xsuaa",
+          "telemetry": {
+            "kind": "to-cloud-logging"
+          }
+        },
+        "[development]": {
+          "strategy": "mocked",
+          "users": {
+            "jhon": {
+              "roles": [
+                "admin",
+                "spacefarer"
+              ],
+              "attr": {
+                "originPlanet": "2"
+              }
+            },
+            "alice": {
+              "roles": [
+                "spacefarer"
+              ],
+              "attr": {
+                "originPlanet": "4"
+              }
+            },
+            "bob": {
+              "roles": [
+                "admin"
+              ],
+              "attr": {
+                "originPlanet": "1"
+              }
+            }
+          }
+        }
+      },
+      "db": {
+        "[development]": {
+          "kind": "sqlite"
+        },
+        "[production]": {
+          "kind": "hana",
+          "pool": {
+            "acquireTimeoutMillis": 2000,
+            "min": 0,
+            "max": 100
+          }
+        }
+      },
+      "query": {
+        "limit": {
+          "max": 1000
+        }
+      },
+      "cov2ap": {
+        "plugin": true
+      },
+      "destinations": true,
+      "html5-repo": true,
+      "application-logging": true,
+      "audit-log": true
+    },
+    "sql": {
+      "native_hana_associations": false
+    }
+  }
+}

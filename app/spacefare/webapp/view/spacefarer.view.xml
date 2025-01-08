@@ -1,0 +1,142 @@
+<mvc:View
+    controllerName="sapp.galactic.spacefare.controller.spacefarer"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    height="100%"
+    xmlns:fb="sap.ui.comp.filterbar"
+>   
+    <f:DynamicPage id = "page" headerExpanded="true"  showFooter="true" busyIndicatorDelay="0" busy="{spacefarer>/busy}">
+    	<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="{i18n>appTitle}" level="H2"/>
+					</f:heading>
+                </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader>                
+                <f:content>
+                    <fb:FilterBar id="filterbar" useToolbar="false" search=".onSearch">
+                        <fb:filterItems>
+                            <fb:FilterItem name="spacefarerName" label="{i18n>spacefarerName}">
+                                <fb:control>
+                                    <Input value = "{spacefarerModel>/spacefarerName}" ></Input>
+                                </fb:control>
+                            </fb:FilterItem>
+                            <fb:FilterItem name="suitColor" label="{i18n>suitColor}">
+                                <fb:control>
+                                    <ComboBox name="{i18n>evtTypeTxt}" items="{
+                                                path: '/SpacesuitColor',
+                                                parameters: {
+                                                    select:'ID,name'
+                                                } 
+                                            }" selectedKey = "{spacefarerModel>/selectedSuitColor}" >
+                                        <core:Item key="{ID}" text="{name}" />
+                                    </ComboBox>
+                                </fb:control>
+                            </fb:FilterItem> 
+                            <fb:FilterItem name="warmHoleSkill" label="{i18n>warmHoleSkill}">
+                                <fb:control>
+                                    <ComboBox name="{i18n>evtTypeTxt}" items="{
+                                                path: 'spacefarerModel>/warmHoleSkill'
+                                            }" selectedKey = "{spacefarerModel>/selectedwarmHoleSkill}" >
+                                        <core:Item key="{spacefarerModel>name}" text="{spacefarerModel>name}" />
+                                    </ComboBox>
+                                </fb:control>
+                            </fb:FilterItem> 
+                            <fb:FilterItem name="stardustCollection" label="{i18n>stardustCollection}">
+                                <fb:control>
+                                    <Input value = "{spacefarerModel>/stardustCollection}" type="Number"></Input>
+                                </fb:control>
+                            </fb:FilterItem>
+                        </fb:filterItems>
+                    </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <Table id="spacefarersTbl" items="{
+						path: '/Spacefarers',
+                         parameters: {
+                                expand: 'originPlanet,spacesuitColor,department,position',
+                                select:'name,email,wormholeNavigationSkill,originPlanet/name,ID,stardustCollection,spacesuitColor/name,department/name,position/name'
+                            }  
+					}"  updateFinished="onSpaceFareresLoaded" enableBusyIndicator="true" busyIndicatorDelay="0" growing ="true" growingThreshold="10" alternateRowColors="true">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                           <Title id="idListTitle" text="{i18n>listHeader}" />
+                           <ToolbarSpacer />
+                           <Button icon="sap-icon://sort" press="onSortButtonPressed" />
+                           <Button icon="sap-icon://group-2" press="onGroupButtonPressed" />
+                           <Button icon="sap-icon://add" press="onPressAddNewSpacefarer" visible="false"/>
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>spacefarerName}" textAlign="Center"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>email}" textAlign="Center"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>planet}" textAlign="Center"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>department}" textAlign="Center"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>position}" textAlign="Center"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>wormHoleskill}" textAlign="Center"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>suitColor}" textAlign="Center"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>stardustCollection}" textAlign="Center"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active" vAlign="Middle" press="onSpacefarerPress">
+                        <cells>
+                            <Text text="{name}" class="sapMTextAlignCenter" textAlign="Center"/>
+                            <Text text="{email}" class="sapMTextAlignCenter" textAlign="Center"/>
+                            <Text text="{originPlanet/name}" class="sapMTextAlignCenter" textAlign="Center"/>
+                            <Text text="{department/name}" class="sapMTextAlignCenter" textAlign="Center"/>
+                            <Text text="{position/name}" class="sapMTextAlignCenter" textAlign="Center"/>
+                            <ObjectNumber
+                                textAlign="Center"
+                                class="sapMTextAlignCenter"
+                                number="{wormholeNavigationSkill}"
+                                state="{
+                                    parts: [
+                                        {path: 'wormholeNavigationSkill'}
+                                    ],
+                                    formatter: '.formatter.stardustState'
+						}" />
+
+
+                            <Text text="{spacesuitColor/name}" class="sapMTextAlignCenter" textAlign="Center"/>
+                            <ObjectNumber
+                                textAlign="Center"
+                                class="sapMTextAlignCenter"
+                                number="{stardustCollection}"
+                                state="{
+                                    parts: [
+                                        {path: 'stardustCollection'}
+                                    ],
+                                    formatter: '.formatter.stardustState'
+						}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

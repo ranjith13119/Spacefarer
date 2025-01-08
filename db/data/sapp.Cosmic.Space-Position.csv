@@ -1,0 +1,6 @@
+ID;name;description;department_ID;createdAt;createdBy;modifiedAt;modifiedBy
+1c21e3b8-7590-40b0-b450-991d3b3c348f;Pilot;Responsible for navigating the spacecraft;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a1f;;;; 
+9a8b6de9-e54b-478b-b5b4-f9e77e9d7ad0;Scientist;Conducts research and experiments;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a1f;;;; 
+d8f41bc2-52c4-493b-bcb5-d0b694b4306c;Engineer;Maintains and repairs the spacecraft;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a4f;;;; 
+68fa3767-0563-4237-90a3-7732155756e5;Medic;Provides medical care to the crew;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a5f;;;; 
+72dfe735-6f69-4f39-a35d-bb62fc70521f;Commander;Leads the crew and makes decisions;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a1f;;;;

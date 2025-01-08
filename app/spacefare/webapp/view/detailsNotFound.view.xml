@@ -1,0 +1,18 @@
+<mvc:View
+    controllerName="sapp.galactic.spacefare.controller.NotFound"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"> 
+
+    <IllustratedMessage
+        title="{i18n>notFoundTitle}"
+        id="notDetailsFoundpage"
+        description=""
+        enableVerticalResponsiveness="true"
+    >
+        <additionalContent>
+            <Button id="btnMainm" text="{i18n>backToMain}" press=".onLinkPressed" />
+        </additionalContent>
+    </IllustratedMessage>
+
+
+</mvc:View>

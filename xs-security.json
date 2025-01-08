@@ -1,0 +1,45 @@
+{
+  "xsappname": "sapcosmicpath",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of Spacefarers application",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.admin",
+      "description": "admin"
+    },
+    {
+      "name": "$XSAPPNAME.spacefarer",
+      "description": "spacefarer"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "originPlanet",
+      "description": "originPlanet",
+      "valueType": "s",
+      "valueRequired": true
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "admin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.admin"
+      ],
+      "attribute-references": [
+        "originPlanet"
+      ]
+    },
+    {
+      "name": "spacefarer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.spacefarer"
+      ],
+      "attribute-references": [
+        "originPlanet"
+      ]
+    }
+  ]
+}

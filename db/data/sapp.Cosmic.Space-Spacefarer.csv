@@ -1,0 +1,6 @@
+ID;name;email;spacesuitColor_ID;wormholeNavigationSkill;originPlanet_ID;stardustCollection;species_ID;department_ID;position_ID;createdAt;createdBy;modifiedAt;modifiedBy
+1c6d7b8c-8976-4d2a-bcfa-b746bed6319f;John Doe;john@yopmail.com;1;Intermediate;2;6500;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a1f;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a1f;1c21e3b8-7590-40b0-b450-991d3b3c348f;;;;
+e9a0b13c-2d56-45d3-b3bc-d0261eaf557f;Jane Smith;jane@yopmail.com;2;Advanced;1;9600;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a2f;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a2f;9a8b6de9-e54b-478b-b5b4-f9e77e9d7ad0;;;;
+3a05a6b9-4e3c-4e92-8f22-9a9c7fb0b8ff;Zara Blayne;zara@yopmail.com;3;Expert;3;15600;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a3f;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a3f;d8f41bc2-52c4-493b-bcb5-d0b694b4306c;;;;
+f1bbf7d0-5d6e-46e9-b84f-33c4e69f4b63;Drake Wren;drake@yopmail.com;4;Intermediate;4;5000;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a4f;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a4f;68fa3767-0563-4237-90a3-7732155756e5;;;;
+b4bc347e-93f6-4a96-8697-c2fcad83b02f;Lia Canto;lia@yopmail.com;5;Beginner;5;700;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a6f;0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a5f;72dfe735-6f69-4f39-a35d-bb62fc70521f;;;;
