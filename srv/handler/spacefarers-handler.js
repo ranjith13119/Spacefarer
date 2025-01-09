@@ -118,13 +118,13 @@ const triggerWelcomeNotification = async (spacefarer, req) => {
         The Galactic Federation 
         `
     aMailConfig.push({
-        from: "admin@galactic.com",
+        from: "ranjith13119@gmail.com",
         to: email,
         subject: `Welcome to Galactic Spacefarer`,
         html: sEmailContent
     });
 
-    //sendMail({ destinationName: "mail_destination" }, aMailConfig);   // Share the email to spacefarer using the SAP BTP mail destination 
+    sendMail({ destinationName: "sap_process_automation_mail" }, aMailConfig);   // Share the email to spacefarer using the SAP BTP mail destination 
 
     await alert.notify('SpacefarerCreated', {
         recipients: [email, "ranjith13119@gmail.com"],
@@ -132,8 +132,7 @@ const triggerWelcomeNotification = async (spacefarer, req) => {
         data: {
             user: name,
         }
-    });
-
+    }); 
 }
 
 /* 
