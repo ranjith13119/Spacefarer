@@ -50,8 +50,10 @@ The **Galactic Spacefarer Adventure** application is available in the following 
 ### 2. **Spacefarer**  
 - **Permissions:**  
   - View their own information and other spacefarers who belong to the same planet.
+  - Eg: LoggedIn as "jane@yopmail.com" who belogs to "Mars" planet and spacefarer can see only the spacefarers who belong to "Mars"
 ![alt text](ReadMeImage/spacefarer_user.png)    
   - Update only their personal details (stardust collection, spacesuit color).  
+  - Eg: Spacefarer: "jane@yopmail.com" couldn't update the another Spacefarer information 
 ![alt text](ReadMeImage/update_validation_issue.png)  
 ## User Access  
 - **Access Point:**  
@@ -85,7 +87,7 @@ The **Galactic Spacefarer Adventure** application is available in the following 
 - **Access Point:** SAP Work Zone, Standard Edition  
 - **Deployment:** SAP BTP Cloud Foundry  
 - **Logs & Traces:** SAP Audit-Logging, SAP Application Logging  
-- **DevOps:** SAP BTP CICD, SAP TMS  
+- **DevOps:** SAP BTP CI&CD, SAP BTP TMS  
 - **Alerts:** SAP BTP Alert Notification, MailTrap   
 
 ## Tasks  
