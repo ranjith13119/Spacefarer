@@ -22,7 +22,8 @@
     10.1 [Prerequisites](#prerequisites)  
     10.2 [Build the Project](#build-the-project)  
     10.3 [Deploy to CF from BAS](#deploy-from-bas)  
-    10.4 [Deploy to CF using CI&CD](#deploy-using-cicd--github-webhook)  
+    10.4 [Deploy to CF using CI&CD](#deploy-using-cicd--webhook) 
+    10.5 [Trust Configuration]  
 
 ---
 
@@ -276,7 +277,26 @@ The build results will be stored in the directory mta_archives
 ### Deploy from BAS 
   - Log in to the target space: ```cf login -a <API endpoint> --sso```
   - Deploy the MTA archive using the CF CLI: ```cf deploy mta_archives/SAPCosmicPath_1.0.0.mtar```
+![alt text](ReadMeImage/deployed_cf_section.png)  
 
 ### Deploy using CI&CD & webhook
   - Complete the CI&CD setup (Including Job, repository, webhook, destination) 
   - Push the code to the configured GIT branch : ```git push origin master```
+
+### Attribute Parameter Mapping in the deployed application 
+  - Configure the OriginPlanet attribute for Spacefarer and Admin Role by naving to **Deployed Application > Security > Role** as shown in the below image: 
+![alt text](ReadMeImage/attribute_assignment.png)
+  - Assign the Roles to Role Collection 
+![alt text](ReadMeImage/Role_Collection.png)  
+  - Map the Role collection to the respective roles from **Security > Trust Configuration > Custom IDP > Role Collection Mappings** 
+![alt text](ReadMeImage/trust_section.png)  
+
+### Configure Role Collection with IAS Groups 
+
+### IAS Setup 
+
+Currently, users in IAS are created manually. However, we can automated this process using an IPS Sync Job, with SuccessFactors or Azure AD as the source system and IAS as the target system. Additionally, users can be automatically assigned to IAS groups based on their respective groups in the source system.
+
+    - BTP Application Attribute Configuration in IAS 
+    - User Profile Planet Assignment ( custom Attribute 1 ) 
+    - User Group Assignment  
