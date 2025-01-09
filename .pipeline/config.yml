@@ -23,7 +23,7 @@ stages:
     cfOrg: "333b6e92trial"
     cfSpace: "dev"
     deployType: "standard"
-    cloudFoundryDeploy: true
+    cloudFoundryDeploy: false
   Additional Unit Tests:
     npmExecuteScripts: false
   Compliance:
