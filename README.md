@@ -379,6 +379,7 @@ The build results will be stored in the directory mta_archives
   - Log in to the target space: ```cf login -a <API endpoint> --sso```
   - Deploy the MTA archive using the CF CLI: ```cf deploy mta_archives/SAPCosmicPath_1.0.0.mtar```
 ![alt text](ReadMeImage/deployed_cf_section.png)  
+![alt text](ReadMeImage/hana.png)  
 
 ### Deploy using CI&CD & webhook
   - Complete the CI&CD setup (Including Job, repository, webhook, destination) 
