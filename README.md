@@ -128,11 +128,73 @@ Screenshot of data model definition with localization:
 - **Authorization:**  
   - Admins can access all data and perform all operations.  
   - Spacefarers can only update their own records and access the data of them and other spacefarers belonging to the same planet.  
-- **Authentication:** Assigned via SAP IAS with roles defined in `xs-security.json`.  
+```bash 
+    @(restrict: [
+        {
+            grant: ['*'],
+            to   : 'admin'
+        },
+        {
+            grant: [
+                'READ'
+            ],
+            to   : 'spacefarer',
+            where: 'originPlanet_ID = $user.originPlanet'
+        }, 
+        {
+            grant: [
+                'UPDATE'
+            ],
+            to   : 'spacefarer',
+            where: 'email = $user'
+        }
+    ])  
+    entity Spacefarers as projection on cosmicspace.Spacefarer;
+```
+- **Authentication:** Assigned via SAP IAS with roles defined in `xs-security.json`. 
 
-**Outcome:**  
-Screenshots of the service definitions and role mappings (e.g., `srv/service.cds` file and `xs-security.json`).  
-
+```bash 
+   "scopes": [
+    {
+      "name": "$XSAPPNAME.admin",
+      "description": "admin"
+    },
+    {
+      "name": "$XSAPPNAME.spacefarer",
+      "description": "spacefarer"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "originPlanet",
+      "description": "originPlanet",
+      "valueType": "s",
+      "valueRequired": true
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "admin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.admin"
+      ],
+      "attribute-references": [
+        "originPlanet"
+      ]
+    },
+    {
+      "name": "spacefarer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.spacefarer"
+      ],
+      "attribute-references": [
+        "originPlanet"
+      ]
+    }
+  ]
+```
 ---
 
 ### Task 3: Cosmic Event Handlers  
@@ -144,6 +206,7 @@ Screenshots of the service definitions and role mappings (e.g., `srv/service.cds
      - Space Suit  
      - Stardust Collection  
      - Planet  
+![alt text](ReadMeImage/UI_validation.png)  
    - **Stardust Collection and Wormhole Navigation Skill Logic:**  
      The `Wormhole Navigation Skill` is enriched based on the `Stardust Collection` value:  
 
@@ -154,13 +217,21 @@ Screenshots of the service definitions and role mappings (e.g., `srv/service.cds
    | 3,000 - 6,999              | Intermediate             |  
    | < 3,000                    | Beginner                 |  
 
-   **Outcome:** Attach screenshots of your CAP event handler logic (e.g., `srv/service.js` or `srv/event-handler.js`).  
-
 2. **@After Event:**  
    - **Trigger Email:** Once a spacefarer is successfully created, send an email to the spacefarer using **MailTrap**. And **MailTrap** details are configured in the SAP BTP destination section. 
-   - **Workzone Notification:** Send a notification to both the admin and the spacefarer to inform them of the successful creation.  
+![alt text](ReadMeImage/BTP_destination.png)  
+![alt text](ReadMeImage/mailTrap.png)  
 
-   **Outcome:** Attach screenshots of the event handler implementation for email and notification triggers.  
+   - **Workzone Notification:** Send a notification to both the admin and the spacefarer to inform them of the successful creation.  
+    ```bash 
+     await alert.notify('SpacefarerCreated', {
+        recipients: [email, "ranjith13119@gmail.com"],
+        priority: "HIGH",
+        data: {
+            user: name,
+        }
+    }); 
+    ```
 
 ---
 
