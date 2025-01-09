@@ -34,3 +34,5 @@ db.sqlite-*
 
 # @cap-js/cds-typer
 @cds-models
+.env*
+db.sqlite-shm
