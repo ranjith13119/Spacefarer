@@ -1,6 +1,6 @@
-ID,name,description,createdAt,createdBy,modifiedAt,modifiedBy
-0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a1f,Human,The species originating from Earth,,,,
-0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a2f,Martian,The species originating from Mars,,,,
-0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a3f,Zyntarian,The species originating from Zyntar,,,,
-0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a4f,Vulcan,The species originating from Vulcan,,,,
-0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a6f,Klingon,The species originating from Qo'noS,,,,
+ID;name;description;createdAt;createdBy;modifiedAt;modifiedBy
+0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a1f;Human;The species originating from Earth;;;;
+0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a2f;Martian;The species originating from Mars;;;;
+0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a3f;Zyntarian;The species originating from Zyntar;;;;
+0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a4f;Vulcan;The species originating from Vulcan;;;;
+0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d2a6f;Klingon;The species originating from Qo'noS;;;;

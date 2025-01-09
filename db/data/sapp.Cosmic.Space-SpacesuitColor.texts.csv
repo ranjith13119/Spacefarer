@@ -1,11 +1,11 @@
-ID,locale,name,descr
-1,de,Red,Typischerweise leuchtend rot, um ihre Rolle zu kennzeichnen
-2,de,Blue,Oftens blau, um Intellekt und Präzision darzustellen
-3,de,Green,Üblicherweise grün, um technische Expertise zu symbolisieren
-4,de,Yellow,Oftens gelb, um Heilung und Fürsorge darzustellen
-5,de,White,Allgemein weiß, um Führung und Autorität zu kennzeichnen
-1,fr,Red,Typiquement rouge vif pour signifier leur rôle
-2,fr,Blue,Souvent bleu pour représenter l'intellect et la précision
-3,fr,Green,Habituellement vert pour symboliser l'expertise technique
-4,fr,Yellow,Souvent jaune pour représenter la guérison et les soins
-5,fr,White,Généralement blanc pour signifier le leadership et l'autorité
+ID;locale;name;descr
+1;de;Red;Typischerweise leuchtend rot, um ihre Rolle zu kennzeichnen
+2;de;Blue;Oftens blau, um Intellekt und Präzision darzustellen
+3;de;Green;Üblicherweise grün, um technische Expertise zu symbolisieren
+4;de;Yellow;Oftens gelb, um Heilung und Fürsorge darzustellen
+5;de;White;Allgemein weiß, um Führung und Autorität zu kennzeichnen
+1;fr;Red;Typiquement rouge vif pour signifier leur rôle
+2;fr;Blue;Souvent bleu pour représenter l'intellect et la précision
+3;fr;Green;Habituellement vert pour symboliser l'expertise technique
+4;fr;Yellow;Souvent jaune pour représenter la guérison et les soins
+5;fr;White;Généralement blanc pour signifier le leadership et l'autorité

@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/library"],function(e){"use strict";const{ValueState:t}=e;const r={stardustState:function(e){switch(true){case e>=1e4||e=="Expert":return t.Success;case e>=7e3&&e<1e4||e=="Advanced":return t.Warning;case e>=3e3&&e<7e3||e=="Intermediate":return t.Error;default:return t.Information}}};return r});
+//# sourceMappingURL=formatter.js.map

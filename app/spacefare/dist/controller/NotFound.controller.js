@@ -1,0 +1,2 @@
+sap.ui.define(["./BaseController","sap/ui/core/routing/History"],(e,r)=>{"use strict";return e.extend("sapp.galactic.spacefare.controller.spacefarer",{onLinkPressed:function(){this.getRouter().navTo("Routespacefarer")}})});
+//# sourceMappingURL=NotFound.controller.js.map

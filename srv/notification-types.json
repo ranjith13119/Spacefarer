@@ -1,0 +1,16 @@
+[
+    {
+        "NotificationTypeKey": "SpacefarerCreated",
+        "NotificationTypeVersion": "1",
+        "Templates": [
+            {
+                "Language": "en",
+                "TemplatePublic": "Spacefarer Created",
+                "TemplateSensitive": "'{{name}}' is an Galactic Spacefarer!",
+                "TemplateGrouped": "Spacefarer Created",
+                "TemplateLanguage": "mustache",
+                "Subtitle": "New Account is created for {{name}}!!"
+            }
+        ]
+    }
+]

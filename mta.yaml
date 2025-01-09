@@ -1,143 +1,190 @@
 _schema-version: 3.3.0
 ID: SAPCosmicPath
-description: A simple CAP project.
+description: cosmic spacefarers adventude.
 version: 1.0.0
 modules:
-- name: SAPCosmicPath-srv
-  type: nodejs
-  path: gen/srv
-  requires:
-  - name: SAPCosmicPath-auth
-  - name: SAPCosmicPath-db
-  - name: SAPCosmicPath-destination
-  - name: SAPCosmicPath-logging
-  - name: SAPCosmicPath-auditlog
-  provides:
-  - name: srv-api
-    properties:
-      srv-url: ${default-url}
-  parameters:
-    buildpack: nodejs_buildpack
-    readiness-health-check-http-endpoint: /health
-    readiness-health-check-type: http
-  build-parameters:
-    builder: npm
-- name: SAPCosmicPath-db-deployer
-  type: hdb
-  path: gen/db
-  requires:
-  - name: SAPCosmicPath-db
-  parameters:
-    buildpack: nodejs_buildpack
-- name: SAPCosmicPath-app-deployer
-  type: com.sap.application.content
-  path: gen
-  requires:
-  - name: SAPCosmicPath-html5-repo-host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: app/
+  - name: SAPCosmicPath-srv
+    type: nodejs
+    path: gen/srv
     requires:
-    - artifacts:
-      - sappgalacticspacefare.zip
-      name: sappgalacticspacefare
-      target-path: app//
-- name: SAPCosmicPath-destination-content
-  type: com.sap.application.content
-  requires:
-  - name: SAPCosmicPath-destination
+      - name: SAPCosmicPath-auth
+      - name: SAPCosmicPath-db
+      - name: SAPCosmicPath-destination
+      - name: SAPCosmicPath-logging
+      - name: SAPCosmicPath-auditlog
+      - name: SAPCosmicPath-autoscaler
+        parameters:
+          config:
+            instance_max_count: 2
+            instance_min_count: 1
+            scaling_rules:
+              - adjustment: "+1"
+                metric_type: memoryutil
+                operator: ">="
+                threshold: 80
+              - adjustment: "-1"
+                metric_type: memoryutil
+                operator: <
+                threshold: 60
+              - adjustment: "+1"
+                metric_type: cpu
+                operator: ">="
+                threshold: 80
+              - adjustment: "-1"
+                metric_type: cpu
+                operator: <
+                threshold: 30
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
     parameters:
-      content-target: true
-  - name: SAPCosmicPath-html5-repo-host
+      buildpack: nodejs_buildpack
+      readiness-health-check-http-endpoint: /health
+      readiness-health-check-type: http
+      disk-quota: 1024M
+      memory: 512M
+    build-parameters:
+      builder: npm
+      ignore: ["node_modules/"]
+  # ----------------- DATABASE DEPLOYER APPLICATION -----------------
+  - name: SAPCosmicPath-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: SAPCosmicPath-db
     parameters:
-      service-key:
-        name: SAPCosmicPath-html5-repo-host-key
-  - name: SAPCosmicPath-auth
+      buildpack: nodejs_buildpack
+  # ----------------- HTML5 DEPLOYER APPLICATION -----------------
+  - name: SAPCosmicPath-app-deployer
+    type: com.sap.application.content
+    path: gen
+    requires:
+      - name: SAPCosmicPath-html5-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: app/
+      requires:
+        - artifacts:
+            - sappgalacticspacefare.zip
+          name: sappgalacticspacefare
+          target-path: app/
+  # ----------------- DESTINATION CONTENT APPLICATION -----------------
+  - name: SAPCosmicPath-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: SAPCosmicPath-destination
+        parameters:
+          content-target: true
+      - name: SAPCosmicPath-html5-repo-host
+        parameters:
+          service-key:
+            name: SAPCosmicPath-html5-repo-host-key
+      - name: SAPCosmicPath-auth
+        parameters:
+          service-key:
+            name: SAPCosmicPath-auth-key
     parameters:
-      service-key:
-        name: SAPCosmicPath-auth-key
-  parameters:
-    content:
-      instance:
-        destinations:
-        - Name: spacefarers_SAPCosmicPath_html5_repo_host
-          ServiceKeyName: SAPCosmicPath-html5-repo-host-key
-          sap.cloud.service: spacefarers
-        - Authentication: OAuth2UserTokenExchange
-          Name: spacefarers_SAPCosmicPath_auth
-          ServiceInstanceName: SAPCosmicPath-auth
-          ServiceKeyName: SAPCosmicPath-auth-key
-          sap.cloud.service: spacefarers
-        existing_destinations_policy: ignore
-  build-parameters:
-    no-source: true
-- name: sappgalacticspacefare
-  type: html5
-  path: app/spacefare
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-resources:
-- name: SAPCosmicPath-auth
-  type: org.cloudfoundry.managed-service
-  parameters:
-    path: ./xs-security.json
-    service: xsuaa
-    service-plan: application
-- name: SAPCosmicPath-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    service: hana
-    service-plan: hdi-shared
-- name: SAPCosmicPath-destination
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: true
-      init_data:
+      content:
         instance:
           destinations:
-          - Authentication: NoAuthentication
-            HTML5.DynamicDestination: true
-            HTML5.ForwardAuthToken: true
-            Name: SAPCosmicPath-srv-api
-            ProxyType: Internet
-            Type: HTTP
-            URL: ~{srv-api/srv-url}
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          existing_destinations_policy: update
-    service: destination
-    service-plan: lite
-- name: SAPCosmicPath-html5-repo-host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-plan: app-host
-- name: SAPCosmicPath-logging
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: application-logs
-    service-plan: standard
-- name: SAPCosmicPath-auditlog
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: auditlog
-    service-plan: premium
+            - Name: spacefarers_SAPCosmicPath_html5_repo_host
+              ServiceInstanceName: SAPCosmicPath-html5-repo-host
+              ServiceKeyName: SAPCosmicPath-html5-repo-host-key
+              sap.cloud.service: spacefarers
+            - Authentication: OAuth2UserTokenExchange
+              Name: spacefarers_SAPCosmicPath_auth
+              ServiceInstanceName: SAPCosmicPath-auth
+              ServiceKeyName: SAPCosmicPath-auth-key
+              sap.cloud.service: spacefarers
+          existing_destinations_policy: ignore
+    build-parameters:
+      no-source: true
+    # ----------------- HTML5 DEPLOYER APPLICATION -----------------
+  - name: sappgalacticspacefare
+    type: html5
+    path: app/spacefare
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms: []
+resources:
+  # ----------------- AUTHENTICATION SERVICE -----------------
+  - name: SAPCosmicPath-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application
+  # ----------------- HANA CONTAINER SERVICE -----------------
+  - name: SAPCosmicPath-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+    # ----------------- DESTINATION SERVICE -------------------
+  - name: SAPCosmicPath-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
+                Name: SAPCosmicPath-srv-api
+                ProxyType: Internet
+                Type: HTTP
+                URL: ~{srv-api/srv-url}
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://ui5.sap.com
+            existing_destinations_policy: update
+      service: destination
+      service-plan: lite
+    requires:
+        - name: srv-api
+  # ----------------- HTML REPOSITORY HOST SERVICE ------------
+  - name: SAPCosmicPath-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  # ---------------- APPLICATION LOGGING SERVICE --------------
+  - name: SAPCosmicPath-logging
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: application-logs
+      service-plan: lite
+  # ---------------- AUDIT LOG SERVICE ---------------
+  - name: SAPCosmicPath-auditlog
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: auditlog-management
+      service-plan: default
+  # ---------------- AUTOSCALAR SERVICE ---------------
+  - name: SAPCosmicPath-autoscaler
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: autoscaler
+      service-name: SAPCosmicPath-autoscaler
+      service-plan: standard
 parameters:
-  deploy_mode: html5-repo
+  deploy_mode: html5-reposs
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-  - builder: custom
-    commands:
-    - npm ci
-    - npx cds build --production
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+        # - npx rimraf gen/db/src/gen/data   ## Move only the static data
+        - npx rimraf gen/db/src/gen/csv   ## Remove all the dynamic data used for testing 

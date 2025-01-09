@@ -3,7 +3,6 @@ using sapp.Cosmic.Space as cosmicspace from '../db/cosmicSchema';
 @(requires: 'authenticated-user' )
 service SpacefarersService @(path: '/spacefarers')  {
 
-
     @(restrict: [
         {
             grant: ['*'],
@@ -21,7 +20,7 @@ service SpacefarersService @(path: '/spacefarers')  {
                 'UPDATE'
             ],
             to   : 'spacefarer',
-            where: 'ID = $user'
+            where: 'email = $user'
         }
     ])  
     entity Spacefarers as projection on cosmicspace.Spacefarer;

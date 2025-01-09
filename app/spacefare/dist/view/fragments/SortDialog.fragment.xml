@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+  <ViewSettingsDialog confirm="onConfirmSort">
+    <sortItems>
+      <ViewSettingsItem text="{i18n>spacefarerName}" key="name" />
+      <ViewSettingsItem text="{i18n>stardustCollection}" key="stardustCollection" />
+    </sortItems>
+  </ViewSettingsDialog>
+</core:FragmentDefinition>

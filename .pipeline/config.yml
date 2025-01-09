@@ -1,42 +1,37 @@
-###
-# This file configures the project "Piper" pipeline of your project.
-# For a reference of the configuration concept and available options, please have a look into its documentation.
-#
-# The documentation for the most recent pipeline version can always be found at:
-#    https://www.project-piper.io/
-#
-# This is a YAML-file. YAML is an indentation-sensitive file format. Please make sure to properly indent changes to it.
-###
-
-
-
-### General project setup
+---
 general:
-  inferBuildTool: true
-
-### Step-specific configuration
-steps:
-  mavenExecute:
-    dockerImage: devxci/mbtci:1.0.14
-
-  artifactPrepareVersion:
-    versioningType: cloud_noTag
-
-### Stage-specific configuration
+  buildTool: "mta"
+service:
+  buildToolVersion: "MBTJ17N18"
+  stages:
+    Release:
+      cfCredentialsId: "deploy-to-cf"
 stages:
-  'Confirm':
-    manualConfirmation: false
-
-#  Integration:
-#    credentials:
-#      - alias: 'mySystemAlias'
-#        credentialId: 'mySystemCredentialsId'
-
-#  Release:
-#    cfTargets:
-#      - org: 'myOrg'
-#        space: 'mySpace'
-#        apiEndpoint: 'https://'
-#        appName: 'myAppName'
-#        manifest: 'manifest.yml'
-#        credentialsId: 'myDeploymentCredentialsId'
+  Build:
+    mavenExecuteStaticCodeChecks: false
+    npmExecuteLint: false
+  Acceptance:
+    cloudFoundryDeploy: false
+    npmExecuteEndToEndTests: false
+  Malware Scan:
+    malwareExecuteScan: false
+  Release:
+    tmsExport: false
+    tmsUpload: true
+    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
+    cfOrg: "333b6e92trial"
+    cfSpace: "dev"
+    deployType: "blue-green"
+    cloudFoundryDeploy: true
+  Additional Unit Tests:
+    npmExecuteScripts: false
+  Compliance:
+    sonarExecuteScan: false
+steps:
+  cloudFoundryDeploy:
+    mtaDeployParameters: "-f --version-rule ALL"
+  tmsUpload:
+    nodeName: "QA"
+    credentialsId: "tms"
+  artifactPrepareVersion:
+    versioningType: "cloud_noTag"

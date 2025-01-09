@@ -1,6 +1,6 @@
 ID;name;description;planet_ID;createdAt;createdBy;modifiedAt;modifiedBy
-0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a1f;Exploration;Department responsible for space exploration;2;;;;;
-0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a2f;Defense;Department responsible for planetary defense;1;;;;;
-0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a3f;Research;Department focused on scientific research;3;;;;;
-0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a4f;Engineering;Department focused on the design and construction of spacecraft;4;;;;;
-0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a5f;Medical;Department responsible for medical care of spacefarers;5;;;;;
+0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a1f;Exploration;Department responsible for space exploration;2;;;;
+0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a2f;Defense;Department responsible for planetary defense;1;;;;
+0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a3f;Research;Department focused on scientific research;3;;;;
+0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a4f;Engineering;Department focused on the design and construction of spacecraft;4;;;;
+0e9a6d7b-4c2d-8f3e-1b5a-9e7c6f8d3a5f;Medical;Department responsible for medical care of spacefarers;5;;;;

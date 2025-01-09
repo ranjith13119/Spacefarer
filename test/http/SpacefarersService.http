@@ -5,7 +5,7 @@
 
 ### Spacefarers
 # @name Spacefarers_GET
-GET {{server}}/spacefarers/Spacefarers/1c6d7b8c-8976-4d2a-bcfa-b746bed6319f
+GET {{server}}/spacefarers/Spacefarers/b4bc347e-93f6-4a96-8697-c2fcad83b02f
 {{auth}}
 
 
@@ -16,40 +16,28 @@ Content-Type: application/json
 {{auth}}
 
 {
-  "ID": "21345217-adff-46ed-9e34-5829c0e662d6",
+  "ID": "21345513-adff-46ee-9f34-6839803562v0",
   "name": "Ranjith",
-  "email": "rk@gmail.com",
+  "email": "ak@gmaill.commmm",
   "originPlanet": {
     "ID": 4
   },
   "stardustCollection": 8500,
-  "species": {
-    "ID": "18612548-cebd-4971-b1ca-58b844544dfd"
-  },
-  "department": {
-    "ID": "11609238-ab8f-4096-bb7c-7c1ad36dc2e0"
-  },
-  "position": {
-    "ID": "27517707-c66a-4e1a-8730-d01fabe06075"
-  },
-  "spacesuitColor": {
-    "ID": 3
-  }
+  "species_ID": "18612548-cebd-4971-b1ca-58b844544dfd",
+  "department_ID" : "11609238-ab8f-4096-bb7c-7c1ad36dc2e0",
+  "position_ID": "27517707-c66a-4e1a-8730-d01fabe06075",
+  "spacesuitColor_ID": 3
 }
 
 
 ### Spacefarers
 # @name Spacefarers_PATCH
-PUT {{server}}/spacefarers/Spacefarers/3a05a6b9-4e3c-4e92-8f22-9a9c7fb0b8ff
+PUT {{server}}/spacefarers/Spacefarers/b4bc347e-93f6-4a96-8697-c2fcad83b02f
 Content-Type: application/json
 {{auth}}
 ##{{userAuth}}
 
-{
-  "ID": "3a05a6b9-4e3c-4e92-8f22-9a9c7fb0b8ff",
-  "spacesuitColor_ID": "2",
-  "stardustCollection": 2000
-}
+{"spacesuitColor_ID":"3","stardustCollection":"2006.6"}
 
 
 ### Spacefarers

@@ -17,7 +17,7 @@
     },
     "dataSources": {
       "spacefarerV4": {
-        "uri": "/spacefarers/",
+        "uri": "spacefarers/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -25,7 +25,7 @@
         }
       },
       "spacefarerV2": {
-        "uri": "/odata/v2/spacefarers",
+        "uri": "odata/v2/spacefarers",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -39,6 +39,8 @@
           "semanticObject": "spacefarer",
           "action": "display",
           "title": "{{flpTitle}}",
+          "icon":"sap-icon://ai",
+          "subTitle":"{{flpSubTitle}}",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -162,6 +164,10 @@
         "notFound": {
           "name": "NotFound",
           "id": "notFound"
+        },
+        "detailsNotFound": {
+          "name": "detailsNotFound",
+          "id": "detailsNotFoundpage"
         },
         "details": {
           "name": "details",

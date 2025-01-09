@@ -1,6 +1,12 @@
 const cds = require("@sap/cds");
 const { sendMail } = require("@sap-cloud-sdk/mail-client");
+const LOG = cds.log('spacefarers-service');
 const { Spacefarer } = cds.entities;
+
+(async function () {
+    alert = await cds.connect.to('notifications');
+})();
+
 
 /* 
   Function to check if the provided email address matches a valid email format. 
@@ -46,22 +52,25 @@ const _determineWormholeNavigationSkill = (iStardustCollection) => {
 
 const validateSpacefarerDetails = async (req) => {
 
-    const { email, stardustCollection, spacesuitColor, originPlanet } = req.data;
+    const { email, stardustCollection, spacesuitColor_ID, originPlanet_ID } = req.data;
 
-    if (email && spacesuitColor && originPlanet && (stardustCollection >= 0)) {
+    if (email && spacesuitColor_ID && originPlanet_ID && (stardustCollection >= 0)) {
         if (!_validateEmailFormat(email)) req.reject(400, 'Please provide the valid the Email details');
 
         const oSpaceFarer = await SELECT.one.from(Spacefarer, ["ID"]).where({ email })          // check for duplicate email 
 
-        if (oSpaceFarer?.ID) req.reject(400, `Spacefarer with the same email ID: ${email} already exists in the cosmic planet`)
+        if (oSpaceFarer?.ID) {
+            LOG.info(`Spacefarer with the same email ID: ${email} already exists in the cosmic planet`);
+            req.reject(400, `Spacefarer with the same email ID: ${email} already exists in the cosmic planet`);
+        }
     } else {
         if (!email) {
             req.reject(400, 'Email is required');
         } else if (stardustCollection < 0) {
             req.reject(400, 'Stardust collection must be >= 0 ');
-        } else if (!spacesuitColor) {
+        } else if (!spacesuitColor_ID) {
             req.reject(400, 'Spacesuit Color is required.');
-        } else if (!originPlanet) {
+        } else if (!originPlanet_ID) {
             req.reject(400, 'Origin Plant is required.');
         }
     }
@@ -93,8 +102,12 @@ const enrichSpacefarerDetails = async (req) => {
 */
 
 const triggerWelcomeNotification = async (spacefarer, req) => {
+
+    // console.log("LoggedIn User >>>", req.req.authInfo.getEmail());
+
     let aMailConfig = [];
     const { name, email } = spacefarer;
+    LOG.info(`Email Trigger to Spacefarer: ${name} to the email ID: ${email}`)
     const sEmailContent = `Dear ${name}, 
         Congratulations on starting your adventurous journet amount the stars!.
         We are thrilled to welcome you as a Galatic Spacefarer. 
@@ -110,7 +123,17 @@ const triggerWelcomeNotification = async (spacefarer, req) => {
         subject: `Welcome to Galactic Spacefarer`,
         html: sEmailContent
     });
+
     //sendMail({ destinationName: "mail_destination" }, aMailConfig);   // Share the email to spacefarer using the SAP BTP mail destination 
+
+    await alert.notify('SpacefarerCreated', {
+        recipients: [email, "ranjith13119@gmail.com"],
+        priority: "HIGH",
+        data: {
+            user: name,
+        }
+    });
+
 }
 
 /* 
@@ -120,12 +143,12 @@ const triggerWelcomeNotification = async (spacefarer, req) => {
 
 const onUpdateSpaceFarersDetail = async (req) => {
 
-    const { ID, stardustCollection, spacesuitColor } = req.data;
+    const { ID, stardustCollection, spacesuitColor_ID } = req.data;
 
     const wormholeNavigationSkill = _determineWormholeNavigationSkill(stardustCollection);
 
     const affectedRows = await UPDATE(Spacefarer).set({
-        stardustCollection, spacesuitColor, wormholeNavigationSkill
+        stardustCollection, wormholeNavigationSkill, spacesuitColor_ID
     }).where({ ID })
     if (!affectedRows) req.reject(400, "Couldn't update the Spacefarer Information")
 }
