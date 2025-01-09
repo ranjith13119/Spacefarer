@@ -50,10 +50,10 @@ The **Galactic Spacefarer Adventure** application is available in the following 
 ### 2. **Spacefarer**  
 - **Permissions:**  
   - View their own information and other spacefarers who belong to the same planet.
-  - Eg: LoggedIn as "jane@yopmail.com" who belogs to "Mars" planet and spacefarer can see only the spacefarers who belong to "Mars"
+  - Eg: Logged in as "jane@yopmail.com," a spacefarer from the planet "Mars," she can only view other spacefarers who are also from "Mars."
 ![alt text](ReadMeImage/spacefarer_user.png)    
   - Update only their personal details (stardust collection, spacesuit color).  
-  - Eg: Spacefarer: "jane@yopmail.com" couldn't update the another Spacefarer information 
+  - Eg: Spacefarer "jane@yopmail.com" was unable to update another spacefarer's information.
 ![alt text](ReadMeImage/update_validation_issue.png)  
 ## User Access  
 - **Access Point:**  
