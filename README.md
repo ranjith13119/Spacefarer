@@ -232,7 +232,6 @@ Screenshot of data model definition with localization:
         }
     }); 
     ```
-
 ---
 
 ### Task 4: Galactic List Report and Cosmic Object Page Fiori Application  
@@ -243,7 +242,9 @@ Screenshot of data model definition with localization:
   - The spacefarer list is bound to a table using **OData v2 Model**.  
   - A **JSON Model** is used as a local model to handle the front-end data.  
   - Implement functionality for pagination, filtering, sorting, and grouping using **OData v2**.  
-  - Users can filter and sort spacefarer records based on various attributes such as name, stardust collection, planet, or position.  
+  - Users can filter and sort spacefarer records based on various attributes such as name, stardust collection, planet, or position. 
+![alt text](ReadMeImage/filter_with_group.png)  
+
 - **Cosmic Object Page Fiori Application:**  
   - Developed using **SAPUI5** to display detailed information of the spacefarer when clicked from the list report.  
   - The Object Page shows information in detail, including:  
@@ -252,13 +253,16 @@ Screenshot of data model definition with localization:
     - Position and its description 
     - Planet and its  description 
     - Stardust Collection and Spacesuit Color (with the option for spacefarers to update these fields) 
-    - Etc.,  
+    - Etc.,    
+![alt text](ReadMeImage/Object.png)  
+  - Update spacefarer records: 
+![alt text](ReadMeImage/Update_User.png)  
+![alt text](ReadMeImage/SuccessFull_update.png) 
   - The page is **responsive** for different screen sizes.  
-  - **Error Handling:** All errors are handled in a single place, ensuring a centralized error management system.  
+  - **Error Handling:** All errors are handled in a single place, ensuring a centralized error management system. 
+![alt text](ReadMeImage/Error.png)   
   - **Not Found Pages:** Implemented error pages for situations where a user enters an incorrect URL path or an invalid spacefarer ID.  
-
-**Outcome:**  
-Attach screenshots of the List Report application, Object Page application, OData model binding logic, and the error handling implementation. Include a screenshot demonstrating the pagination, filtering, sorting, grouping functionality, and responsive design. 
+![alt text](ReadMeImage/not_found.png)  
 
 ## Key Features  
 
