@@ -99,8 +99,24 @@ The **Galactic Spacefarer Adventure** application is available in the following 
 - Spacesuit Color  
 - Species 
 
+```bash
+
+entity Spacefarer : cuid, managed {
+  name                    : localized String(100); // Spacefarer's name
+  email                   : String @assert.format: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' ;
+  wormholeNavigationSkill : WormholeNavigationSkill; // Categorized skill level
+  originPlanet            : Association to Planet ; // The planet they come from (e.g., Earth, Mars, etc.)
+  stardustCollection      : Integer ; // Amount of stardust collected
+  species                 : Association to Species; // Link to the Species entity (e.g., Human, Martian, etc.)
+  department              : Association to Department; // Link to intergalactic department (e.g., Exploration, Defense)
+  position                : Association to Position; // Link to the spacefarer's position based on which the spacesuit color will be associated(e.g., Pilot, Scientist)
+  spacesuitColor: Association to SpacesuitColor ;       
+}
+```
+
 **Outcome:**  
 Screenshot of data model definition with localization:   
+![alt text](ReadMeImage/cds_modeling.png)  
 
 ---
 
