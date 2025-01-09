@@ -23,7 +23,10 @@
     10.2 [Build the Project](#build-the-project)  
     10.3 [Deploy to CF from BAS](#deploy-from-bas)  
     10.4 [Deploy to CF using CI&CD](#deploy-using-cicd--webhook) 
-    10.5 [Trust Configuration]  
+    10.5 [OriginPlanet Attribute Mapping](#originplanet-attribute-parameter-mapping-in-the-deployed-application)  
+    10.6 [Role Collection with IAS Groups in Trust Configuration](#role-collection-with-ias-groups-in-trust-configuration)
+    10.7 [IAS Setup](#ias-setup)
+        10.7.1 
 
 ---
 
@@ -283,20 +286,23 @@ The build results will be stored in the directory mta_archives
   - Complete the CI&CD setup (Including Job, repository, webhook, destination) 
   - Push the code to the configured GIT branch : ```git push origin master```
 
-### Attribute Parameter Mapping in the deployed application 
-  - Configure the OriginPlanet attribute for Spacefarer and Admin Role by naving to **Deployed Application > Security > Role** as shown in the below image: 
+### OriginPlanet Attribute Parameter Mapping in the deployed application 
+  - To configure the `OriginPlanet` attribute for the **Spacefarer** and **Admin** roles, navigate to: **Deployed Application > Security > Roles** Follow the steps displayed in the image below: 
 ![alt text](ReadMeImage/attribute_assignment.png)
-  - Assign the Roles to Role Collection 
+  - **Assign the Roles to Role Collection** as shown in the below image  
 ![alt text](ReadMeImage/Role_Collection.png)  
-  - Map the Role collection to the respective roles from **Security > Trust Configuration > Custom IDP > Role Collection Mappings** 
-![alt text](ReadMeImage/trust_section.png)  
 
-### Configure Role Collection with IAS Groups 
+### Role Collection with IAS Groups in Trust Configuration  
+  - Map the Role collection to the respective IAS Groups from **Security > Trust Configuration > Custom IDP > Role Collection Mappings** 
+![alt text](ReadMeImage/trust_section.png)  
 
 ### IAS Setup 
 
 Currently, users in IAS are created manually. However, we can automated this process using an IPS Sync Job, with SuccessFactors or Azure AD as the source system and IAS as the target system. Additionally, users can be automatically assigned to IAS groups based on their respective groups in the source system.
 
-    - BTP Application Attribute Configuration in IAS 
-    - User Profile Planet Assignment ( custom Attribute 1 ) 
-    - User Group Assignment  
+  - BTP Application Attribute Configuration in IAS 
+![alt text](ReadMeImage/IAS_Attribue_Mapping.PNG)  
+  - User Profile Planet Assignment ( custom Attribute 1 ): **Assign the Planet ID based on the information maintained in Planet table**
+![alt text](ReadMeImage/IAS_custom_1.png)  
+  - User Group Assignment: Assign Users to the required Group using **UserManagement>{User}>Groups>Assign>assign required group from the list** 
+![alt text](ReadMeImage/IAS_custom_1.png)  
