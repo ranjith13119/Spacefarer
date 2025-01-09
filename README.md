@@ -33,7 +33,6 @@
 The **Galactic Spacefarer Adventure** is a full-stack responsive application built using the **SAP CAP Framework** (Node.js, HANA, SAPUI5) and deployed on the **SAP BTP Cloud Foundry environment**. This application helps manage spacefarers' intergalactic adventures while maintaining strict role-based access controls.  
 
 
-
 ## Multilingual Support  
 The **Galactic Spacefarer Adventure** application is available in the following languages:  
 - **English** (Set as default and fallback language)  
@@ -44,16 +43,20 @@ The **Galactic Spacefarer Adventure** application is available in the following 
 ### 1. **Admin**  
 - **Permissions:**  
   - View all spacefarer information across different planets.  
+![alt text](ReadMeImage/admin_1.png)  
   - Create, update, and delete spacefarer records.  
+![alt text](ReadMeImage/admin_2.png)
 
 ### 2. **Spacefarer**  
 - **Permissions:**  
-  - View their own information and other spacefarers who belong to the same planet.  
+  - View their own information and other spacefarers who belong to the same planet.
+![alt text](ReadMeImage/spacefarer_user.png)    
   - Update only their personal details (stardust collection, spacesuit color).  
-
+![alt text](ReadMeImage/update_validation_issue.png)  
 ## User Access  
 - **Access Point:**  
-  - Admins and Spacefarers can access the application via **SAP Work Zone** as a tile.  
+  - Admins and Spacefarers can access the application via **SAP Build Work Zone** as a tile.  
+![alt text](ReadMeImage/flp.png)  
 - **Permissions Configuration:**  
   - Required permissions for the application tile and respective groups are assigned in **SAP IAS**.  
   - Trust configuration between **SAP IAS** and **SAP BTP** ensures secure authentication and access management.  
@@ -62,6 +65,7 @@ The **Galactic Spacefarer Adventure** application is available in the following 
 ### SAP IAS Integration  
 - **Identity Provider:** SAP Identity Authentication Service (SAP IAS) serves as the IDP for user login.  
 - **Authentication Protocol:** OpenID Connect protocol is used to authenticate with SAP BTP.  
+![alt text](ReadMeImage/trust_conf.png)  
 - **Role Assignment:**  
   - Admin and Spacefarer roles are assigned to respective groups in IAS.  
   - Each spacefarer’s planet information is stored in IAS under `customAttribute1`.  
@@ -257,6 +261,7 @@ Screenshot of data model definition with localization:
 ![alt text](ReadMeImage/Object.png)  
   - Update spacefarer records: 
 ![alt text](ReadMeImage/Update_User.png)  
+
 ![alt text](ReadMeImage/SuccessFull_update.png) 
   - The page is **responsive** for different screen sizes.  
   - **Error Handling:** All errors are handled in a single place, ensuring a centralized error management system. 
