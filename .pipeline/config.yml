@@ -22,7 +22,7 @@ stages:
     cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
     cfOrg: "333b6e92trial"
     cfSpace: "dev"
-    deployType: "blue-green"
+    deployType: "standard"
     cloudFoundryDeploy: true
   Additional Unit Tests:
     npmExecuteScripts: false
