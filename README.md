@@ -382,6 +382,8 @@ The build results will be stored in the directory mta_archives
 ### Deploy using CI&CD & webhook
   - Complete the CI&CD setup (Including Job, repository, webhook, destination) 
   - Push the code to the configured GIT branch : ```git push origin master```
+![alt text](ReadMeImage/Successfull_Build.png)  
+![alt text](ReadMeImage/TMS.png)  
 
 ### OriginPlanet Attribute Parameter Mapping in the deployed application 
   - To configure the `OriginPlanet` attribute for the **Spacefarer** and **Admin** roles, navigate to: **Deployed Application > Security > Roles** Follow the steps displayed in the image below: 
