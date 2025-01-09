@@ -57,6 +57,7 @@ sap.ui.define([
                 }
             });
         },
+
         _onBindingChange: function () {
             var oView = this.getView(),
                 oElementBinding = oView.getElementBinding();
@@ -68,6 +69,8 @@ sap.ui.define([
             }
             this.oJsonModel.setProperty("/busy", false);
         },
+
+        // Open Edit Dialog to update the spacefarer information 
 
         onEditPress: function () {
             this.oJsonModel.setProperty("/handleEditControl", true);
@@ -88,6 +91,7 @@ sap.ui.define([
             }
         },
 
+         // Cancel the spacefarer edit action 
         onPressCancelEditSpace: function () {
             this.oJsonModel.setProperty("/handleEditControl", false);
             this._oEditDialog.close()
@@ -119,6 +123,8 @@ sap.ui.define([
                 }
             })
         },
+
+        // Delete the spacefarer information as an admin 
 
         onPressDelete: function () {
 

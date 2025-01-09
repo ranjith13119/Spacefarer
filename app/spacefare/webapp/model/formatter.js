@@ -5,7 +5,9 @@ sap.ui.define([
 
 	const { ValueState } = coreLibrary;
 
-	const Formatter = {
+	const Formatter = { 
+		
+		// Formatter function to format the color of stardust collection and Warmhole Navigation Skill 
 		stardustState : function (sValue) {
 
 			// if the value of fMeasure is not a number, no status will be set

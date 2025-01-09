@@ -64,6 +64,7 @@ entity Department : cuid, managed {
   planet      : Association to one Planet;
 }
 
+// Position Information 
 entity Position : cuid, managed {
   name           : localized String(255); // Position name (e.g., Pilot, Scientist)
   description    : localized String; // Position description

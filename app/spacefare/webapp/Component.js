@@ -31,12 +31,12 @@ sap.ui.define([
             // set the initial data for the JSON Model 
             this.initJsonModel();
 
-        }, 
+        },
 
-        
-        initJsonModel : function() {
+
+        initJsonModel: function () {
             this.getModel("spacefarerModel").setData(constants);
-        }, 
+        },
 
         /**
                 * The component is destroyed by UI5 automatically.
@@ -70,6 +70,6 @@ sap.ui.define([
                 }
             }
             return this._sContentDensityClass;
-        } 
+        }
     });
 });

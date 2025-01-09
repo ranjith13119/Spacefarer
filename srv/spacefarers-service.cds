@@ -1,37 +1,42 @@
 using sapp.Cosmic.Space as cosmicspace from '../db/cosmicSchema';
 
-@(requires: 'authenticated-user' )
-service SpacefarersService @(path: '/spacefarers')  {
+@(requires: 'authenticated-user')
+service SpacefarersService @(path: '/spacefarers') {
 
     @(restrict: [
         {
-            grant: ['*'],
+            grant: ['*'], //Enable All CRUD options for Admin
             to   : 'admin'
         },
         {
-            grant: [
-                'READ'
-            ],
+            grant: ['READ'],
             to   : 'spacefarer',
-            where: 'originPlanet_ID = $user.originPlanet'
-        }, 
+            where: 'originPlanet_ID = $user.originPlanet' // Allow spacefarers to access data only from the same planet
+        },
         {
-            grant: [
-                'UPDATE'
-            ],
+            grant: ['UPDATE'],
             to   : 'spacefarer',
-            where: 'email = $user'
+            where: 'email = $user' // Allow spacefarers to update only their own profiles
         }
-    ])  
+    ])
     entity Spacefarers as projection on cosmicspace.Spacefarer;
 
-    @(restrict: [{ grant: ['*'], to   : 'admin' }])
-    entity Species    as projection on cosmicspace.Species;
-    
-    @(restrict: [{ grant: ['*'], to   : 'admin' }])
+    @(restrict: [{
+        grant: ['*'],
+        to   : 'admin'
+    }])
+    entity Species     as projection on cosmicspace.Species;
+
+    @(restrict: [{
+        grant: ['*'],
+        to   : 'admin'
+    }])
     entity Planets     as projection on cosmicspace.Planet;
 
-    @(restrict: [{ grant: ['*'], to   : 'admin' }])
+    @(restrict: [{
+        grant: ['*'],
+        to   : 'admin'
+    }])
     entity Departments as
         projection on cosmicspace.Department {
             *
@@ -43,7 +48,10 @@ service SpacefarersService @(path: '/spacefarers')  {
             modifiedBy
         };
 
-   @(restrict: [{ grant: ['*'], to   : 'admin' }])
+    @(restrict: [{
+        grant: ['*'],
+        to   : 'admin'
+    }])
     entity Positions   as
         projection on cosmicspace.Position {
             *

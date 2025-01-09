@@ -76,7 +76,7 @@
                         icon="sap-icon://delete"
                         text="{i18n>delete}"
                         type="Default"
-                         press="onPressDelete"
+                        press="onPressDelete"
                         visible="{spacefarerModel>/isAdmin}"
                     />
                     <Button

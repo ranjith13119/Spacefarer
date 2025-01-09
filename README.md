@@ -18,6 +18,7 @@
    7.4 [Task 4: Galactic List & Object Report Fiori Application](#task-4-galactic-list--object-report-fiori-application)  
 8. [Key Features](#key-features)  
 9. [Folder Structure](#folder-structure)  
+9. [Run Locally](#run-locally)
 10. [Deployment to SAP Business Technology Platform](#deployment-to-sap-business-technology-platform)  
     10.1 [Prerequisites](#prerequisites)  
     10.2 [Build the Project](#build-the-project)  

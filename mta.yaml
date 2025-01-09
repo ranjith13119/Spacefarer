@@ -12,7 +12,7 @@ modules:
       - name: SAPCosmicPath-destination
       - name: SAPCosmicPath-logging
       - name: SAPCosmicPath-auditlog
-      - name: SAPCosmicPath-autoscaler
+      - name: SAPCosmicPath-autoscaler  
         parameters:
           config:
             instance_max_count: 2

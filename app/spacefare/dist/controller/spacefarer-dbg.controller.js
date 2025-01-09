@@ -73,10 +73,13 @@ sap.ui.define([
             aFilter.length ? oBinding.filter(new Filter(aFilter, true)) : oBinding.filter(aFilter);
         },
 
+        // Update Spacefares List count 
         onSpaceFareresLoaded: function (oEvent) {
             const sListTitle = this.getModel('i18n').getResourceBundle().getText('listHeader')
             this.getView().byId('idListTitle').setText(`${sListTitle} (${oEvent.getParameter('total')})`)
         },
+
+        // Open Dialog on Sort Button press  
 
         onSortButtonPressed: function () {
             //Load and display the sort dialog
@@ -95,6 +98,8 @@ sap.ui.define([
             }
         },
 
+        // Open Dialog on Group Button press 
+
         onGroupButtonPressed: function () {
             //Load and display the group dialog
             if (!this._oGroupDialog) {
@@ -112,7 +117,8 @@ sap.ui.define([
             }
         },
 
-        // Handle confirm sort
+        // Handle Sort action on the server using oData - V2
+
         onConfirmSort: function (oEvent) {
             // Get sort related event parameters
             const oSortItem = oEvent.getParameter('sortItem')
@@ -126,7 +132,7 @@ sap.ui.define([
                 .sort(oSortItem ? [new Sorter(oSortItem.getKey(), bDescending)] : [])
         },
 
-        // Handle confirm group
+        // Handle Group action on the server using oData - V2
         onConfirmGroup: function (oEvent) {
             // Get group related event parameters
             const oGroupItem = oEvent.getParameter('groupItem')
@@ -164,6 +170,8 @@ sap.ui.define([
             });
         },
 
+        // Open New spacefarer creation dialog 
+
         onPressAddNewSpacefarer: function () {
             //Load and display the create dialog
             if (!this._oCreateDialog) {
@@ -181,6 +189,8 @@ sap.ui.define([
             }
         },
 
+        // Create new Spacefarer after the validation 
+
         onPressCreateNewSpacefarer: function () {
             const { newName, newEmail, newPlanet, newDepartment, newWarmHoleSkill, newSpaceSuitColor, newStartDuust } = this.oJsonModel.getData();
 
@@ -194,13 +204,13 @@ sap.ui.define([
                 stardustCollection: newStartDuust
             }
 
-            // Validate input
+            // Validate provide spacefarer information 
             if (!this._validate(oPayload)) return
 
             this.oJsonModel.setProperty("/busy", true);
             const oResourceBundle = this.getModel("i18n").getResourceBundle();
 
-            oPayload.position_ID = "1c21e3b8-7590-40b0-b450-991d3b3c348f";
+            oPayload.position_ID = "1c21e3b8-7590-40b0-b450-991d3b3c348f"; // Maintain static department 
 
             // Send create request
             this.getView().getModel().create("/Spacefarers", oPayload, {
@@ -218,6 +228,8 @@ sap.ui.define([
             })
         },
 
+        // Validate Mandatory Spacefarer creation information 
+
         _validate: function (...aPayload) {
 
             let oPayload = aPayload[0];
@@ -233,6 +245,8 @@ sap.ui.define([
             // Return validation status
             return (!!oPayload.name && !!oPayload.email && !!oPayload.wormholeNavigationSkill && !!oPayload.originPlanet_ID && !!oPayload.department_ID && !!oPayload.spacesuitColor_ID && !!oPayload.stardustCollection);
         },
+
+        // Clost the New spacefarer dialog
 
         onPressCancelNewSpacefarer: function () {
             this._oCreateDialog.close()
