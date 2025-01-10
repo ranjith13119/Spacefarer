@@ -1,37 +1,39 @@
 # Galactic Spacefarer Adventure  
-
 ## Table of Contents  
+
 1. [Overview](#overview)  
 2. [Multilingual Support](#multilingual-support)  
 3. [Personas](#personas)  
-   3.1 [Admin](#1-admin)  
-   3.2 [Spacefarer](#2-spacefarer)  
+   - [Admin](#1-admin)  
+   - [Spacefarer](#2-spacefarer)  
 4. [User Access](#user-access)  
 5. [Authentication & Authorization](#authentication--authorization)  
-   5.1 [SAP IAS Integration](#sap-ias-integration)  
-   5.2 [Role-Based Access Control (RBAC)](#role-based-access-control-rbac)  
+   - [SAP IAS Integration](#sap-ias-integration)  
+   - [Role-Based Access Control (RBAC)](#role-based-access-control-rbac)  
 6. [Technology Stack](#technology-stack)  
-7. [Tasks](#tasks)  
-   7.1 [Task 1: Spacefaring Data Model](#task-1-spacefaring-data-model)  
-   7.2 [Task 2: Cosmic Service Definition](#task-2-cosmic-service-definition)  
-   7.3 [Task 3: Cosmic Event Handlers](#task-3-cosmic-event-handlers)  
-   7.4 [Task 4: Galactic List & Object Report Fiori Application](#task-4-galactic-list--object-report-fiori-application)  
-8. [Key Features](#key-features)  
-9. [Folder Structure](#folder-structure)  
-9. [Run Locally](#run-locally)
-10. [Deployment to SAP Business Technology Platform](#deployment-to-sap-business-technology-platform)  
-    10.1 [Prerequisites](#prerequisites)  
-    10.2 [Build the Project](#build-the-project)  
-    10.3 [Deploy to CF from BAS](#deploy-from-bas)  
-    10.4 [Deploy to CF using CI&CD](#deploy-using-cicd--webhook) 
-    10.5 [OriginPlanet Attribute Mapping](#originplanet-attribute-parameter-mapping-in-the-deployed-application)  
-    10.6 [Role Collection with IAS Groups in Trust Configuration](#role-collection-with-ias-groups-in-trust-configuration)
-    10.7 [IAS Setup](#ias-setup)
-11. [Futher Enhancement](#further-enhancements)
+7. [Architecuture](#architecture)
+8. [Tasks](#tasks)  
+   - [Task 1: Spacefaring Data Model](#task-1-spacefaring-data-model)  
+   - [Task 2: Cosmic Service Definition](#task-2-cosmic-service-definition)  
+   - [Task 3: Cosmic Event Handlers](#task-3-cosmic-event-handlers)  
+   - [Task 4: Galactic List & Object Report Fiori Application](#task-4-galactic-list--object-report-fiori-application)  
+9. [Key Features](#key-features)  
+10. [Folder Structure](#folder-structure)  
+11. [Run Locally](#run-locally)  
+12. [Deployment to SAP Business Technology Platform](#deployment-to-sap-business-technology-platform)  
+    - [Prerequisites](#prerequisites)  
+    - [Build the Project](#build-the-project)  
+    - [Deploy to CF from BAS](#deploy-from-bas)  
+    - [Deploy to CF using CI&CD](#deploy-to-cf-using-cicd--webhook)  
+    - [OriginPlanet Attribute Mapping](#originplanet-attribute-parameter-mapping-in-the-deployed-application)  
+    - [Role Collection with IAS Groups in Trust Configuration](#role-collection-with-ias-groups-in-trust-configuration)  
+    - [IAS Setup](#ias-setup)  
+13. [Further Enhancements](#further-enhancements)  
+
 ---
 
 ## Overview  
-The **Galactic Spacefarer Adventure** is a full-stack responsive application built using the **SAP CAP Framework** (Node.js, HANA, SAPUI5) and deployed on the **SAP BTP Cloud Foundry environment**. This application helps manage spacefarers' intergalactic adventures while maintaining strict role-based access controls.  
+The **Galactic Spacefarer Adventure** is a responsive full-stack application developed using the **SAP CAP Framework** (Node.js, HANA, SAPUI5) and deployed on the **SAP BTP Cloud Foundry environment**. This application helps manage spacefarers' intergalactic adventures while maintaining strict role-based access controls.  
 
 
 ## Multilingual Support  
@@ -90,6 +92,9 @@ The **Galactic Spacefarer Adventure** application is available in the following 
 - **Logs & Traces:** SAP Audit-Logging, SAP Application Logging  
 - **DevOps:** SAP BTP CI&CD, SAP BTP TMS  
 - **Alerts:** SAP BTP Alert Notification, MailTrap   
+
+## Architecture 
+![alt text](ReadMeImage/current_proejct.png)  
 
 ## Tasks  
 
