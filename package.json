@@ -2,7 +2,7 @@
   "name": "SAPCosmicPath",
   "version": "1.0.0",
   "description": "Full Stack Galactic Spacefarer Adventure Project",
-  "repository": "<Add your repository here>",
+  "repository": "https://github.com/ranjith13119/Spacefarer",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {

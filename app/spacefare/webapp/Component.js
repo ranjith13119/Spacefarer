@@ -33,7 +33,7 @@ sap.ui.define([
 
         },
 
-
+        // set the initial data for the JSON Model  
         initJsonModel: function () {
             this.getModel("spacefarerModel").setData(constants);
         },

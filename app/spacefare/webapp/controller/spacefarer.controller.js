@@ -20,14 +20,14 @@ sap.ui.define([
             this.fetchUserScope();
         },
 
-        // Fetch the loggedIn user assigned scope only during the first rendering 
+        // Fetch the loggedIn user assigned scope only during the first time 
 
         fetchUserScope: function () {
             const sAppId = this.getOwnerComponent().getManifestEntry("/sap.app/id");
             const sAppPath = sAppId.replaceAll(".", "/");
-            const sAppModulePath = jQuery.sap.getModulePath(sAppPath);
+            const sAppModulePath = jQuery.sap.getModulePath(sAppPath); // append the dynamic module path 
             $.ajax({
-                "url": sAppModulePath + "/user-api/attributes",
+                "url": sAppModulePath + "/user-api/attributes",  
                 async: false,
                 success: jQuery.proxy(function (user) {
                     const { Groups } = user;

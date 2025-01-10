@@ -103,12 +103,11 @@ const enrichSpacefarerDetails = async (req) => {
 
 const triggerWelcomeNotification = async (spacefarer, req) => {
 
-    // console.log("LoggedIn User >>>", req.req.authInfo.getEmail());
-
-    let aMailConfig = [];
-    const { name, email } = spacefarer;
-    LOG.info(`Email Trigger to Spacefarer: ${name} to the email ID: ${email}`)
-    const sEmailContent = `Dear ${name}, 
+    try {
+        let aMailConfig = [];
+        const { name, email } = spacefarer;
+        LOG.info(`Email Trigger to Spacefarer: ${name} to the email ID: ${email}`)
+        const sEmailContent = `Dear ${name}, 
         Congratulations on starting your adventurous journet amount the stars!.
         We are thrilled to welcome you as a Galatic Spacefarer. 
         
@@ -117,22 +116,29 @@ const triggerWelcomeNotification = async (spacefarer, req) => {
         Best regards, 
         The Galactic Federation 
         `
-    aMailConfig.push({
-        from: "ranjith13119@gmail.com",
-        to: email,
-        subject: `Welcome to Galactic Spacefarer`,
-        html: sEmailContent
-    });
+        aMailConfig.push({
+            from: "ranjith13119@gmail.com",
+            to: email,
+            subject: `Welcome to Galactic Spacefarer`,
+            html: sEmailContent
+        });
 
-    sendMail({ destinationName: "sap_process_automation_mail" }, aMailConfig);   // Share the email to spacefarer using the SAP BTP mail destination 
+        /* Remove the below section to run the application in local */
 
-    await alert.notify('SpacefarerCreated', {
-        recipients: [email, "ranjith13119@gmail.com"],
-        priority: "HIGH",
-        data: {
-            user: name,
-        }
-    }); 
+        sendMail({ destinationName: "sap_process_automation_mail" }, aMailConfig);   // Share the email to spacefarer using the SAP BTP mail destination 
+        LOG.info(`Alert Trigger to Spacefarer: ${name} to the email ID: ${email}`)
+        await alert.notify('SpacefarerCreated', {
+            recipients: [email, "ranjith13119@gmail.com"],
+            priority: "HIGH",
+            data: {
+                user: name,
+            }
+        });
+    } catch (oErr) {
+        console.log(oErr);
+        req.reject(500, 'Error while trying to send notification to the user');
+    }
+
 }
 
 /* 
@@ -141,15 +147,20 @@ const triggerWelcomeNotification = async (spacefarer, req) => {
 */
 
 const onUpdateSpaceFarersDetail = async (req) => {
+    try {
+        const { ID, stardustCollection, spacesuitColor_ID } = req.data;
 
-    const { ID, stardustCollection, spacesuitColor_ID } = req.data;
+        const wormholeNavigationSkill = _determineWormholeNavigationSkill(stardustCollection);
 
-    const wormholeNavigationSkill = _determineWormholeNavigationSkill(stardustCollection);
+        const affectedRows = await UPDATE(Spacefarer).set({
+            stardustCollection, wormholeNavigationSkill, spacesuitColor_ID
+        }).where({ ID })
+        if (!affectedRows) req.reject(400, "Couldn't update the Spacefarer Information")
+    } catch (oErr) {
+        console.log(oErr);
+        req.reject(500, 'Error while updating the users');
+    }
 
-    const affectedRows = await UPDATE(Spacefarer).set({
-        stardustCollection, wormholeNavigationSkill, spacesuitColor_ID
-    }).where({ ID })
-    if (!affectedRows) req.reject(400, "Couldn't update the Spacefarer Information")
 }
 
 module.exports = {

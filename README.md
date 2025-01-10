@@ -341,11 +341,14 @@ cd Spacefarer
 ```bash
 npm install 
 ```
+
 ### Step 3: Start the CAP application with Local Profile 
 
 ```bash
 cds watch 
 ```
+**important** Remove the below section from **srv>handlers>spacefarers-handlers.js>triggerWelcomeNotification** to run the application Succefully in local 
+![alt text](ReadMeImage/image%20copy%203.png)  
 
 ### Step 4: Start the CAP application with Hybrid Profile after binding the information .cdsrc-private.json
 
