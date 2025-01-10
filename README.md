@@ -246,7 +246,7 @@ Screenshot of data model definition with localization:
     ```
 ---
 
-### Task 4: Galactic List Report and Cosmic Object Page Fiori Application  
+### Task 4 & 5: Galactic List Report and Cosmic Object Page Fiori Application  
 **Objective:** Implement the List Report Fiori application and the Object Page Fiori application to display and update spacefarer records using SAPUI5.  
 
 **Features:**  
@@ -347,7 +347,7 @@ npm install
 ```bash
 cds watch 
 ```
-**important** Remove the below section from **srv>handlers>spacefarers-handlers.js>triggerWelcomeNotification** to run the application Succefully in local 
+**Important:** To ensure the application runs successfully in the local environment, remove the following section from the file **srv>handlers>spacefarers-handlers.js>triggerWelcomeNotification**.
 ![alt text](ReadMeImage/image%20copy%203.png)  
 
 ### Step 4: Start the CAP application with Hybrid Profile after binding the information .cdsrc-private.json
