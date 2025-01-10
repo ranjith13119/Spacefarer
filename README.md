@@ -16,7 +16,7 @@
    - [Task 1: Spacefaring Data Model](#task-1-spacefaring-data-model)  
    - [Task 2: Cosmic Service Definition](#task-2-cosmic-service-definition)  
    - [Task 3: Cosmic Event Handlers](#task-3-cosmic-event-handlers)  
-   - [Task 4: Galactic List & Object Report Fiori Application](#task-4-galactic-list--object-report-fiori-application)  
+   - [Task 4 & 5: Galactic List & Object Report Fiori Application](#task-4-galactic-list--object-report-fiori-application)  
 9. [Key Features](#key-features)  
 10. [Folder Structure](#folder-structure)  
 11. [Run Locally](#run-locally)  
